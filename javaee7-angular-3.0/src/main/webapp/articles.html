@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="articles">
+<head>
+    <meta charset="UTF-8">
+    <title>Articles</title>
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="lib/css/ng-grid.min.css"/>
+    <link rel="stylesheet" href="css/menu.css"/>
+    <link rel="stylesheet" href="css/news.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
+
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-resource.min.js"></script>
+    <script src="lib/ui-bootstrap-tpls.min.js"></script>
+    <script src="lib/ng-grid-2.0.11.min.js"></script>
+    <script src="script/article.js"></script>
+    <script src="script/menu.js"></script>
+
+</head>
+<body>
+<div>
+    <ul class="menuUl" ng-controller="navCtrl">
+        <li id="formsLi" class="menuLi" ng-class="navClass('forms')"><a href='forms.html'>Users</a></li>
+        <li class="menuLi" ng-class="navClass('articles')"><a href='articles.html'>Articles</a></li>
+        <li class="menuLi" ng-class="navClass(addArticle)"><a href='addArticle.html'>Add new article</a></li>
+        <li ng-app="news" ng-controller="newsController" class="logedP" id="logedName" ng-class="navClass('logedP')">{{logedPerson.name}}</li>
+        <li ng-app="persons" ng-controller="newsController" class="logout" ng-class="navClass('logedP')">
+            <form id ="loginForm" name="logiinForm" ng-submit="login()">
+                <label class="labelL" for="login">Login</label><input class="loginInput" id = "login" maxlength="20" type="text" />
+                <label class="labelL" for="password">Password</label><input class="loginInput" id = "password" maxlength="20" type="password" />
+                <button class="loginButton" type="submit">Log In</button>
+            </form>
+            <button  id ="logOutButton" class="loginButton" ng-click="logout()">Log Out</button>
+        </li>
+    </ul>
+</div>
+<div class = "page"  ng-controller="newsController">
+    <div class="content" ng-repeat="article in articles">
+        <div class="topic">
+            {{article.context}}
+        </div>
+        <div class="creator"> {{article.creator.name}}</div>
+        <div class="context">{{article.content}}</div>
+        <div class="date">{{article.date}}</div>
+        <button id="removeB" class="button" ng-click="removeNews(article.id)">Remove</button>
+        <button id="editB" class="button" ng-click="editNews(article.id)">Edit</button>
+    </div>
+</div>
+<div class="message">
+    <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+</div>
+</body>
+</html>

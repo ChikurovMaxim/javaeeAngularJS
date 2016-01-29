@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="articles">
+<head>
+    <meta charset="UTF-8">
+    <title>Add article</title>
+    <link rel="stylesheet" href="lib/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="lib/css/ng-grid.min.css"/>
+    <link rel="stylesheet" href="css/menu.css"/>
+    <link rel="stylesheet" href="css/news.css"/>
+    <link rel="stylesheet" type="text/css" href="css/login.css"/>
+
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-resource.min.js"></script>
+    <script src="lib/ui-bootstrap-tpls.min.js"></script>
+    <script src="lib/ng-grid-2.0.11.min.js"></script>
+    <script src="script/article.js"></script>
+    <script src="script/menu.js"></script>
+</head>
+<body ng-controller="newsController">
+<div>
+    <ul class="menuUl" ng-controller="navCtrl">
+        <li id="formsLi" class="menuLi" ng-class="navClass('forms')"><a href='forms.html'>Users</a></li>
+        <li class="menuLi" ng-class="navClass('articles')"><a href='articles.html'>Articles</a></li>
+        <li class="menuLi" ng-class="navClass(addArticle)"><a href='addArticle.html'>Add new article</a></li>
+        <li ng-app="news" ng-controller="newsController" class="logedP" id="logedName" ng-class="navClass('logedP')">{{logedPerson.name}}</li>
+        <li ng-app="persons" ng-controller="newsController" class="logout" ng-class="navClass('logedP')">
+            <form id ="loginForm" name="logiinForm" ng-submit="login()">
+                <label class="labelL" for="login">Login</label><input class="loginInput" id = "login" maxlength="20" type="text" />
+                <label class="labelL" for="password">Password</label><input class="loginInput" id = "password" maxlength="20" type="password" />
+                <button class="loginButton" type="submit">Log In</button>
+            </form>
+            <button  id ="logOutButton" class="loginButton" ng-click="logout()">Log Out</button>
+        </li>
+    </ul>
+</div>
+    <div class="form" ng-controller="articles">
+        <form name="newsForm" ng-submit="confirmEdition()" novalidate>
+            <div class="form-group" >
+                <label for="context">Context:</label>
+                <input id="context" name="topic" type="text" class="form-control" maxlength="100"
+                       ng-model="newNews.content"
+                       required ng-maxlength="100"/>
+            </div>
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <input id="content" name="content" type="text" class="form-control" maxlength="100"  height = "50"
+                       ng-model="newNews.content"
+                       required ng-maxlength="2000"/>
+            </div>
+            <div class="buttons">
+                <button type="button" class="button" ng-click="clearForm()">Clear</button>
+                <button type="submit" class="button">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

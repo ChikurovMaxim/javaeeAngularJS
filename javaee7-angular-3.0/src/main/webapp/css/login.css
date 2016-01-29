@@ -1,0 +1,15 @@
+.loginInput{
+    width: 30%;
+    margin: 0;
+    padding: 0;
+}
+.loginButton{
+    margin-top: 2%;
+    text-decoration-style: solid;
+}
+
+.loginText{
+    width: 120px;
+    padding:6px 16px;
+    border-radius:14px;
+}
